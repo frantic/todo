@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import devtools from 'remote-redux-devtools';
 
 import TodoScreen from './App/Screens/TodoScreen';
 import { ADD_TODO, TOGGLE_TODO } from './App/Store/Actions';
@@ -35,7 +36,7 @@ function reducer(state, action) {
   return state;
 }
 
-const store = createStore(reducer, initialStoreState);
+const store = createStore(reducer, initialStoreState, devtools());
 
 export default class App extends React.Component {
   render() {
