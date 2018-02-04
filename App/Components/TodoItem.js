@@ -1,8 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
+
 import Checkbox from './Checkbox';
 
-export default class TodoItem extends React.Component {
+class TodoItem extends React.Component {
   render() {
     const done = this.props.done;
     return (
@@ -35,3 +37,18 @@ const styles = StyleSheet.create({
     textDecorationLine: 'line-through'
   }
 });
+
+function mapStateToProps(storeState, props) {
+  return {
+    done: storeState.find(item => item.title === props.title).done,
+  };
+}
+
+function mapDispatchToProps(dispatch, props) {
+  return {
+    onCheck: () => dispatch({type: 'CHECK', title: props.title}),
+  };
+}
+
+const ConnectedTodoItem = connect(mapStateToProps, mapDispatchToProps)(TodoItem);
+export default ConnectedTodoItem;

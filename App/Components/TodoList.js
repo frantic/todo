@@ -9,11 +9,7 @@ export default class TodoList extends React.Component {
         <FlatList
           data={this.props.todos}
           keyExtractor={item => item.title}
-          renderItem={({item}) => <TodoItem
-            title={item.title}
-            done={item.done}
-            onCheck={() => this.props.onItemCheck(item.title)}
-          />}
+          renderItem={({item}) => <TodoItem title={item.title} />}
         />
       </View>
     );
