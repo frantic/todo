@@ -1,10 +1,11 @@
 import React from 'react';
+import { AsyncStorage } from 'react-native';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import devtools from 'remote-redux-devtools';
 
 import TodoScreen from './App/Screens/TodoScreen';
-import { ADD_TODO, TOGGLE_TODO } from './App/Store/Actions';
+import { RESTORE_STATE, ADD_TODO, TOGGLE_TODO, restoreState } from './App/Store/Actions';
 
 const initialStoreState = {
   todos: [
@@ -15,6 +16,9 @@ const initialStoreState = {
 };
 
 function reducer(state, action) {
+  if (action.type === RESTORE_STATE) {
+    return action.state;
+  }
   if (action.type === ADD_TODO) {
     return {
       todos: [
@@ -37,6 +41,16 @@ function reducer(state, action) {
 }
 
 const store = createStore(reducer, initialStoreState, devtools());
+
+// Primitive version of redux-persist
+AsyncStorage.getItem('state').then(json => {
+  if (json) {
+    store.dispatch(restoreState(JSON.parse(json)));
+  }
+  store.subscribe(() => {
+    AsyncStorage.setItem('state', JSON.stringify(store.getState()));
+  })
+});
 
 export default class App extends React.Component {
   render() {
