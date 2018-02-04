@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 
 import Checkbox from './Checkbox';
+import { toggleTodo } from '../Store/Actions';
 
 @connect(null, mapDispatchToProps)
 export default class TodoItem extends React.Component {
@@ -21,7 +22,7 @@ export default class TodoItem extends React.Component {
 
 function mapDispatchToProps(dispatch, props) {
   return {
-    onToggle: () => dispatch({type: 'TOGGLE_TODO', id: props.todo.id}),
+    onToggle: () => dispatch(toggleTodo(props.todo.id)),
   };
 }
 
