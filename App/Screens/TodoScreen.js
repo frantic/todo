@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import TodoList from '../Components/TodoList';
+import Summary from '../Components/Summary';
 
 export default class TodoScreen extends React.Component {
   state = {
@@ -27,9 +28,7 @@ export default class TodoScreen extends React.Component {
           todos={this.state.todos}
           onItemCheck={(title) => this.onItemCheck(title)}
         />
-        <Text style={styles.summary}>
-          {completedCount} TODOs completed
-        </Text>
+        <Summary completedCount={completedCount} />
       </View>
     );
   }
@@ -55,11 +54,5 @@ const styles = StyleSheet.create({
   logo: {
     paddingLeft: 20,
     fontSize: 40,
-  },
-  summary: {
-    fontSize: 14,
-    textAlign: 'center',
-    padding: 20,
-    color: '#B4B7BA',
   },
 });
