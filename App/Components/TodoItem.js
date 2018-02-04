@@ -1,20 +1,28 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { connect } from 'react-redux';
 
 import Checkbox from './Checkbox';
 
+@connect(null, mapDispatchToProps)
 export default class TodoItem extends React.Component {
   render() {
     const todo = this.props.todo;
     return (
       <View style={styles.content}>
-        <Checkbox isChecked={todo.done} />
+        <Checkbox isChecked={todo.done} onCheck={this.props.onToggle} />
         <Text style={[styles.text, todo.done && styles.done]}>
           {this.props.todo.title}
         </Text>
       </View>
     );
   }
+}
+
+function mapDispatchToProps(dispatch, props) {
+  return {
+    onToggle: () => dispatch({type: 'TOGGLE_TODO', id: props.todo.id}),
+  };
 }
 
 const styles = StyleSheet.create({

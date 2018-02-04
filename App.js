@@ -12,8 +12,17 @@ const initialStoreState = {
   ],
 };
 
-function reducer(state) {
-  // We'll talk about what this does later
+function reducer(state, action) {
+  if (action.type === 'TOGGLE_TODO') {
+    const updatedTodos = state.todos.map(
+      todo => todo.id === action.id
+        ? {...todo, done: !todo.done}
+        : todo
+    );
+    return {
+      todos: updatedTodos,
+    };
+  }
   return state;
 }
 
