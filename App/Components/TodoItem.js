@@ -16,7 +16,7 @@ export default class TodoItem extends React.Component {
           onCheck={() => this.setState({isDone: !isDone})}
         />
         <Text style={[styles.text, isDone && styles.done]}>
-          Write TODO app in under 1 hour
+          {this.props.title}
         </Text>
       </View>
     );
