@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 
 import TodoList from '../Components/TodoList';
+import Summary from '../Components/Summary';
 
 @connect(mapStateToProps)
 export default class TodoScreen extends React.Component {
@@ -13,6 +14,7 @@ export default class TodoScreen extends React.Component {
           TODO
         </Text>
         <TodoList todos={this.props.todos} />
+        <Summary />
       </View>
     );
   }
