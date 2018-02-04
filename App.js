@@ -3,6 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import devToolsEnhancer from 'remote-redux-devtools';
 
 import TodoScreen from './App/Screens/TodoScreen';
 import { todos } from './App/Store/TodoReducer';
@@ -18,7 +19,7 @@ const initialTodos = [{
   done: true,
 }];
 
-const store = createStore(todos, initialTodos);
+const store = createStore(todos, initialTodos, devToolsEnhancer());
 
 export default class App extends React.Component {
   render() {
