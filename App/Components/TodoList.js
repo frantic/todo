@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
+import TodoItem from './TodoItem';
 
 export default class TodoList extends React.Component {
   render() {
@@ -8,7 +9,7 @@ export default class TodoList extends React.Component {
         <FlatList
           data={this.props.todos}
           keyExtractor={item => item.id}
-          renderItem={({item}) => <Text>{item.title}</Text>}
+          renderItem={({item}) => <TodoItem todo={item} />}
         />
       </View>
     );
