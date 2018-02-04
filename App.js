@@ -3,7 +3,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 import TodoScreen from './App/Screens/TodoScreen';
-import { TOGGLE_TODO } from './App/Store/Actions';
+import { ADD_TODO, TOGGLE_TODO } from './App/Store/Actions';
 
 const initialStoreState = {
   todos: [
@@ -14,6 +14,14 @@ const initialStoreState = {
 };
 
 function reducer(state, action) {
+  if (action.type === ADD_TODO) {
+    return {
+      todos: [
+        { id: action.id, title: action.title, done: false },
+        ...state.todos,
+      ],
+    }
+  }
   if (action.type === TOGGLE_TODO) {
     const updatedTodos = state.todos.map(
       todo => todo.id === action.id
