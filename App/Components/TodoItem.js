@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
@@ -40,7 +42,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(storeState, props) {
   return {
-    done: storeState.find(item => item.title === props.title).done,
+    done: storeState.todos.find(item => item.title === props.title).done,
   };
 }
 

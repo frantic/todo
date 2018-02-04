@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(storeState) {
   return {
-    todos: storeState,
+    todos: storeState.todos,
   };
 }
 
