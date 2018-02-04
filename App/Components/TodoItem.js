@@ -3,11 +3,18 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Checkbox from './Checkbox';
 
 export default class TodoItem extends React.Component {
+  state = {
+    isDone: false,
+  };
+
   render() {
-    const isDone = false;
+    const isDone = this.state.isDone;
     return (
       <View style={styles.content}>
-        <Checkbox />
+        <Checkbox
+          isChecked={isDone}
+          onCheck={() => this.setState({isDone: !isDone})}
+        />
         <Text style={[styles.text, isDone && styles.done]}>
           Write TODO app in under 1 hour
         </Text>

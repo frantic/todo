@@ -2,14 +2,10 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 export default class Checkbox extends React.Component {
-  state = {
-    isChecked: false,
-  };
-
   render() {
-    const isChecked = this.state.isChecked;
+    const isChecked = this.props.isChecked;
     return (
-      <TouchableOpacity onPress={() => this.setState({isChecked: !isChecked})}>
+      <TouchableOpacity onPress={this.props.onCheck}>
         <View style={styles.outer}>
           {isChecked ? <View style={styles.inner} /> : null}
         </View>
