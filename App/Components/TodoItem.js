@@ -3,19 +3,15 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Checkbox from './Checkbox';
 
 export default class TodoItem extends React.Component {
-  state = {
-    isDone: false,
-  };
-
   render() {
-    const isDone = this.state.isDone;
+    const done = this.props.done;
     return (
       <View style={styles.content}>
         <Checkbox
-          isChecked={isDone}
-          onCheck={() => this.setState({isDone: !isDone})}
+          isChecked={done}
+          onCheck={this.props.onCheck}
         />
-        <Text style={[styles.text, isDone && styles.done]}>
+        <Text style={[styles.text, done && styles.done]}>
           {this.props.title}
         </Text>
       </View>

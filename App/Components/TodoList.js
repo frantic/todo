@@ -22,10 +22,25 @@ export default class TodoList extends React.Component {
         <FlatList
           data={this.state.todos}
           keyExtractor={item => item.title}
-          renderItem={({item}) => <TodoItem title={item.title} />}
+          renderItem={({item}) => <TodoItem
+            title={item.title}
+            done={item.done}
+            onCheck={() => this.updateItem(item.title, !item.done)}
+          />}
         />
       </View>
     );
+  }
+
+  updateItem(title, done) {
+    const updatedTodos = this.state.todos.map(item => {
+      if (item.title === title) {
+        return {...item, done}
+      } else {
+        return item;
+      }
+    });
+    this.setState({todos: updatedTodos});
   }
 }
 
