@@ -6,7 +6,6 @@ import NewTodoInput from '../Components/NewTodoInput';
 import TodoList from '../Components/TodoList';
 import Summary from '../Components/Summary';
 
-@connect(mapStateToProps)
 export default class TodoScreen extends React.Component {
   render() {
     return (
@@ -15,7 +14,7 @@ export default class TodoScreen extends React.Component {
           TODO
         </Text>
         <NewTodoInput />
-        <TodoList todos={this.props.todos} />
+        <TodoList todos={[]} />
         <Summary />
       </View>
     );
@@ -33,10 +32,3 @@ const styles = StyleSheet.create({
     fontSize: 40,
   },
 });
-
-
-function mapStateToProps(storeState) {
-  return {
-    todos: storeState.todos,
-  };
-}

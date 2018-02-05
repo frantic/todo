@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import Checkbox from './Checkbox';
 import { toggleTodo } from '../Store/Actions';
 
-@connect(null, mapDispatchToProps)
 export default class TodoItem extends React.Component {
   render() {
     const todo = this.props.todo;
@@ -18,12 +17,6 @@ export default class TodoItem extends React.Component {
       </View>
     );
   }
-}
-
-function mapDispatchToProps(dispatch, props) {
-  return {
-    onToggle: () => dispatch(toggleTodo(props.todo.id)),
-  };
 }
 
 const styles = StyleSheet.create({

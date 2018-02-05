@@ -2,12 +2,11 @@ import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { connect } from 'react-redux';
 
-@connect(mapStateToProps)
 export default class Summary extends React.Component {
   render() {
     const completedCount = this.props.completedCount;
     let label;
-    if (completedCount === 0) {
+    if (!completedCount) {
       label = 'Lots of things to do!';
     } else if (completedCount === 1) {
       label = 'One TODO completed';
@@ -30,9 +29,3 @@ const styles = StyleSheet.create({
     color: '#B4B7BA',
   },
 });
-
-function mapStateToProps(storeState) {
-  return {
-    completedCount: storeState.todos.filter(item => item.done).length,
-  };
-}

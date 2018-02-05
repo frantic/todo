@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import { addTodo } from '../Store/Actions';
 
-@connect(null, mapDispatchToProps)
 export default class TodoItem extends React.Component {
   state = {
     title: '',
@@ -20,19 +19,12 @@ export default class TodoItem extends React.Component {
           value={this.state.title}
           onChangeText={(title) => this.setState({title})}
           onSubmitEditing={() => {
-            this.props.onAdd(this.state.title);
             this.setState({title: ''});
           }}
         />
       </View>
     );
   }
-}
-
-function mapDispatchToProps(dispatch, props) {
-  return {
-    onAdd: (title) => dispatch(addTodo(title)),
-  };
 }
 
 const styles = StyleSheet.create({
