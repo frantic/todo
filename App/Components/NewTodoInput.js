@@ -16,6 +16,7 @@ export default class TodoItem extends React.Component {
         <TextInput
           style={styles.input}
           placeholder="Add New TODO"
+          underlineColorAndroid="transparent"
           value={this.state.title}
           onChangeText={(title) => this.setState({title})}
           onSubmitEditing={() => {
